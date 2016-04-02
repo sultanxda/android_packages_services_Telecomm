@@ -2490,7 +2490,9 @@ public class CallsManager extends Call.ListenerBase implements VideoProviderProx
             Log.v(this, "Holding active/dialing call %s before answering incoming call %s.",
                     mLocalCallsManager.mForegroundCall, mNewCall);
 
-            mActiveCall.hold();
+            if (mActiveCall.getConnectionService() != null) {
+                mActiveCall.hold();
+            }
             // TODO: Wait until we get confirmation of
             // the active call being
             // on-hold before answering the new call.
